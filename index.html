@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demerit Points Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade Calculator</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="ccm">Demerit Points Calculator</h1>
-    <p id="kmw">Enter the speed of the vehicle</p>
-    <input type="number" id="speedInput">
-    <button onclick="calculateDemeritPoints()">Calculate</button>
-    <p id="result"></p>
-
-    <script>
-        function calculateDemeritPoints() {
-            const speedLimit = 70;
-            const speedInput = document.getElementById("speedInput").value;
-            const speed = parseFloat(speedInput);
-            let demeritPoints = 0;
-
-            if (speed <= speedLimit) {
-                document.getElementById("result").innerText = "Ok";
-            } else {
-                demeritPoints = Math.floor((speed - speedLimit) / 5);
-                document.getElementById("result").innerText = "Points: " + demeritPoints;
-            }
-
-            if (demeritPoints > 12) {
-                document.getElementById("result").innerText = "License suspended";
-            }
+  <h2 id="ccm">Grade Calculator</h2>
+  <label for="mark">Enter Student's Mark (between 0 and 100):</label>
+  <input type="number" id="mark" name="mark" min="0" max="100">
+  <button onclick="calculateGrade()" id="ty">Calculate Grade</button>
+  <p id="result"></p>
+  <script>
+    function calculateGrade() {
+      var mark = parseFloat(document.getElementById("mark").value);
+      var grade = '';
+      if (!isNaN(mark) && mark >= 0 && mark <= 100) {
+        if (mark > 79) {
+          grade = 'A';
+        } else if (mark >= 60) {
+          grade = 'B';
+        } else if (mark >= 50) {
+          grade = 'C';
+        } else if (mark >= 40) {
+          grade = 'D';
+        } else {
+          grade = 'E';
         }
-    </script>
+        document.getElementById("result").innerText = "The student's grade is: " + grade;
+      } else {
+        document.getElementById("result").innerText = "Please enter a valid mark between 0 and 100.";
+      }
+    }
+  </script>
 </body>
 </html>
